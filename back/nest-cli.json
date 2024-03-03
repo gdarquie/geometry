@@ -4,8 +4,10 @@
   "sourceRoot": "apps/geometry-core/src",
   "compilerOptions": {
     "deleteOutDir": true,
-    "webpack": true,
-    "tsConfigPath": "apps/geometry-core/tsconfig.app.json"
+    "webpack": false,
+    "tsConfigPath": "apps/geometry-core/tsconfig.app.json",
+    "assets": ["**/*.hbs"],
+    "watchAssets": true
   },
   "monorepo": true,
   "root": "apps/geometry-core",
@@ -16,7 +18,9 @@
       "entryFile": "main",
       "sourceRoot": "apps/geometry-core/src",
       "compilerOptions": {
-        "tsConfigPath": "apps/geometry-core/tsconfig.app.json"
+        "tsConfigPath": "apps/geometry-core/tsconfig.app.json",
+        "assets": ["**/*.hbs"],
+        "watchAssets": true
       }
     }
   }

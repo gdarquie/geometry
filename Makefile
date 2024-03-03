@@ -12,5 +12,8 @@ build b:
 stop:
 	$(DOCKER_COMPOSE) stop
 
-make console c:
-	$(DOCKER_COMPOSE) exec core bash
+console c:
+	$(DOCKER_COMPOSE) exec core sh
+
+logs l:
+	$(DOCKER_COMPOSE) logs -f
