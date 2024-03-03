@@ -1,8 +1,9 @@
-FROM node:21-alpine3.18
+FROM node:21-bullseye
 
 WORKDIR /usr/geometry/back
+COPY ./back/package.json .
+RUN npm install --quiet
 
-COPY package.json .
-RUN npm install --save-dev --quiet
+COPY ./back .
 
-COPY . .
+CMD pwd && ls

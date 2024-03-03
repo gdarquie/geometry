@@ -10,6 +10,7 @@ export class GeometryCoreController {
     return this.geometryCoreService.getHello();
   }
 
+  // not working for now
   @Get('/views')
   @Render('index')
   getView(@Res() res: Response) {
@@ -22,7 +23,7 @@ export class GeometryCoreController {
       {
         "type": "Features",
         "properties": {
-          "party": "Republican"
+          "party": "Republicans"
         },
         "geometry": {
           "type": "Polygon",
