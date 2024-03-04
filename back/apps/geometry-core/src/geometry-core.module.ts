@@ -2,6 +2,9 @@ import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { GeometryCoreController } from './geometry-core.controller';
 import { GeometryCoreService } from './geometry-core.service';
+import { CityPostgresAdapterModule } from '@app/city-postgres-adapter';
+import { City } from '@app/city-postgres-adapter/entities/city.entity';
+import { CityPostgresAdapterController } from '@app/city-postgres-adapter/city-postgres-adapter.controller';
 
 @Module({
   imports: [
@@ -12,11 +15,13 @@ import { GeometryCoreService } from './geometry-core.service';
       username: 'gis',
       password: 'pwd',
       database: 'gis',
-      entities: [],
+      entities: [City],
       synchronize: true,
     }),
+    TypeOrmModule.forFeature([City]),
+    CityPostgresAdapterModule,
   ],
-  controllers: [GeometryCoreController],
+  controllers: [GeometryCoreController, CityPostgresAdapterController],
   providers: [GeometryCoreService],
 })
 export class GeometryCoreModule { }

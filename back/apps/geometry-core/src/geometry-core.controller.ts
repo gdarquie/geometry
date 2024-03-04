@@ -1,22 +1,30 @@
-import { Controller, Get, Render, Res } from '@nestjs/common';
+import { Controller, Get } from '@nestjs/common';
 import { GeometryCoreService } from './geometry-core.service';
+import { CityPostgresAdapterGetter } from '@app/city-postgres-adapter';
+import { City } from '@app/city-postgres-adapter/entities/city.entity';
 
 @Controller()
 export class GeometryCoreController {
-  constructor(private readonly geometryCoreService: GeometryCoreService) { }
+  constructor(
+    private readonly geometryCoreService: GeometryCoreService,
+    private readonly cityPostgresAdpaterGetter: CityPostgresAdapterGetter,
+  ) { }
 
   @Get()
   getHello(): string {
     return this.geometryCoreService.getHello();
   }
 
+  // @todo: debug the view system or find equivalent
   // not working for now
-  @Get('/views')
-  @Render('index')
-  getView(@Res() res: Response) {
-    return { message: 'Hello world Yes!' };
-  }
+  // @Get('/views')
+  // @Render('index')
+  // getView(@Res() res: Response) {
+  //   return { message: 'Hello world Yes!' };
+  // }
 
+  // @todo: remove when not needed anymore
+  // it is an example of the geojson format expected by leaflet
   @Get('/states')
   getStates(): string {
     return JSON.stringify([
@@ -124,6 +132,6 @@ export class GeometryCoreController {
         }
       }
     ]);
-    
+
   }
 }

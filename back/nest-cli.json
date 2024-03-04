@@ -16,7 +16,18 @@
       "sourceRoot": "apps/geometry-core/src",
       "compilerOptions": {
         "tsConfigPath": "apps/geometry-core/tsconfig.app.json",
-        "assets": ["**/*.hbs"]
+        "assets": [
+          "**/*.hbs"
+        ]
+      }
+    },
+    "city-postgres-adapter": {
+      "type": "library",
+      "root": "libs/city-postgres-adapter",
+      "entryFile": "index",
+      "sourceRoot": "libs/city-postgres-adapter/src",
+      "compilerOptions": {
+        "tsConfigPath": "libs/city-postgres-adapter/tsconfig.lib.json"
       }
     }
   }
