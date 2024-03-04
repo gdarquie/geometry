@@ -4,6 +4,10 @@
 - a backend server / api
 - a front end
 
+## Warning
+
+This project is actually a POC and a work in progress.
+
 ## Install project
 
 Set env var: for geometry-root in your shell configuration (e.g. bashrc or .zshrc)
@@ -28,6 +32,10 @@ make s
 ```
 
 If you change node modules packages, rebuild the project.
+
+## About database
+
+when installing the project, you need to create the postgis database and to add the postgis extension.
 
 ## Todo
 
