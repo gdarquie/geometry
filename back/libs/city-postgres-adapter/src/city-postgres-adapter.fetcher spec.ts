@@ -1,15 +1,15 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { CityPostgresAdapterGetter } from './city-postgres-adapter.getter';
+import { CityPostgresAdapterFetcher } from './city-postgres-adapter.fetcher';
 
 describe('CityPostgresAdapterGetter', () => {
-  let getter: CityPostgresAdapterGetter;
+  let getter: CityPostgresAdapterFetcher;
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      providers: [CityPostgresAdapterGetter],
+      providers: [CityPostgresAdapterFetcher],
     }).compile();
 
-    getter = module.get<CityPostgresAdapterGetter>(CityPostgresAdapterGetter);
+    getter = module.get<CityPostgresAdapterFetcher>(CityPostgresAdapterFetcher);
   });
 
   it('should be defined', () => {

@@ -4,12 +4,12 @@ import { City } from './entities/city.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 
 @Injectable()
-export class CityPostgresAdapterGetter {
+export class CityPostgresAdapterPersister {
   constructor(
     @InjectRepository(City)
     private readonly cityRepository: Repository<City>
   ) { }
-  async getCities() {
-    return await this.cityRepository.find()
+  async saveCity(city: City) {
+    return await this.cityRepository.save(city)
   }
 }
