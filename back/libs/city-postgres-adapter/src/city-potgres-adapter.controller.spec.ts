@@ -1,7 +1,7 @@
 import { Test, TestingModule } from '@nestjs/testing';
 
 import { CityPostgresAdapterController } from './city-postgres-adapter.controller';
-import { CityPostgresAdapterGetter } from './city-postgres-adapter.getter';
+import { CityPostgresAdapterFetcher } from './city-postgres-adapter.fetcher';
 
 describe('CityPostgresAdapterController', () => {
   let cityPostgresAdapterController: CityPostgresAdapterController;
@@ -9,7 +9,7 @@ describe('CityPostgresAdapterController', () => {
   beforeEach(async () => {
     const app: TestingModule = await Test.createTestingModule({
       controllers: [CityPostgresAdapterController],
-      providers: [CityPostgresAdapterGetter],
+      providers: [CityPostgresAdapterFetcher],
     }).compile();
 
     cityPostgresAdapterController = app.get<CityPostgresAdapterController>(CityPostgresAdapterController);

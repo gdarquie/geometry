@@ -1,13 +1,10 @@
 import { Controller, Get } from '@nestjs/common';
 import { GeometryCoreService } from './geometry-core.service';
-import { CityPostgresAdapterGetter } from '@app/city-postgres-adapter';
-import { City } from '@app/city-postgres-adapter/entities/city.entity';
 
 @Controller()
 export class GeometryCoreController {
   constructor(
     private readonly geometryCoreService: GeometryCoreService,
-    private readonly cityPostgresAdpaterGetter: CityPostgresAdapterGetter,
   ) { }
 
   @Get()

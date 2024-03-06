@@ -17,3 +17,6 @@ console c:
 
 logs l:
 	$(DOCKER_COMPOSE) logs -f
+
+run-console rc:
+	$(DOCKER_COMPOSE) run --rm geometry bash
