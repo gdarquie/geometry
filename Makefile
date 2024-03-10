@@ -20,3 +20,7 @@ logs l:
 
 run-console rc:
 	$(DOCKER_COMPOSE) run --rm geometry bash
+
+webpack w:
+	$(DOCKER_COMPOSE) exec geometry npm run build
+
