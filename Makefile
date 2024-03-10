@@ -22,5 +22,8 @@ run-console rc:
 	$(DOCKER_COMPOSE) run --rm geometry bash
 
 webpack w:
-	$(DOCKER_COMPOSE) exec geometry npm run build
+	$(DOCKER_COMPOSE) stop && $(DOCKER_COMPOSE) exec geometry npm run build
+
+reset:
+	$(DOCKER_COMPOSE) stop && docker system prune
 
