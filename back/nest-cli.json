@@ -3,7 +3,7 @@
   "collection": "@nestjs/schematics",
   "sourceRoot": "apps/geometry-core/src",
   "compilerOptions": {
-    "webpack": false,
+    "webpack": true,
     "tsConfigPath": "apps/geometry-core/tsconfig.app.json"
   },
   "monorepo": true,

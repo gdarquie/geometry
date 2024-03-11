@@ -5,7 +5,7 @@ services:
       context: ${GEOMETRY_ROOT}/
       dockerfile: docker/images/geometry-core/Dockerfile
     environment:
-      - NODE_ENV=production
+      - NODE_ENV=dev
     volumes:
       - ${GEOMETRY_ROOT}/back:/usr/geometry/back
     command: npm run start:dev

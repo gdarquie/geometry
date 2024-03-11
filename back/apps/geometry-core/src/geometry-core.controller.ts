@@ -1,4 +1,4 @@
-import { Controller, Get } from '@nestjs/common';
+import { Controller, Get, Render, Res } from '@nestjs/common';
 import { GeometryCoreService } from './geometry-core.service';
 
 @Controller()
@@ -14,11 +14,11 @@ export class GeometryCoreController {
 
   // @todo: debug the view system or find equivalent
   // not working for now
-  // @Get('/views')
-  // @Render('index')
-  // getView(@Res() res: Response) {
-  //   return { message: 'Hello world Yes!' };
-  // }
+  @Get('/views')
+  @Render('index')
+  getView(@Res() res: Response) {
+    return { message: 'Hello world!' };
+  }
 
   // @todo: remove when not needed anymore
   // it is an example of the geojson format expected by leaflet
