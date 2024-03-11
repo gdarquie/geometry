@@ -3,6 +3,9 @@ DOCKER_COMPOSE=docker compose -f $(GEOMETRY_ROOT)/docker/compose/docker-compose.
 start s:
 	$(DOCKER_COMPOSE) up -d --remove-orphans
 
+restart r:
+	$(DOCKER_COMPOSE) stop && $(DOCKER_COMPOSE) start
+
 start-with-logs sl:
 	$(DOCKER_COMPOSE) up
 
