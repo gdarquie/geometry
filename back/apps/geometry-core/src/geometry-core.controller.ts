@@ -1,10 +1,12 @@
 import { Controller, Get, Render, Res } from '@nestjs/common';
 import { GeometryCoreService } from './geometry-core.service';
+import { CityPostgresAdapterFetcher } from '@app/city-postgres-adapter';
 
 @Controller()
 export class GeometryCoreController {
   constructor(
     private readonly geometryCoreService: GeometryCoreService,
+    private readonly cityFetcher: CityPostgresAdapterFetcher,
   ) { }
 
   @Get()
@@ -16,8 +18,18 @@ export class GeometryCoreController {
   // not working for now
   @Get('/views')
   @Render('index')
-  getView(@Res() res: Response) {
-    return { message: 'Hello world!' };
+  async getView(@Res() res: Response) {
+    const cities = await this.cityFetcher.getCities();
+
+    let coordinates = [];
+
+    if (cities.length > 0) {
+      cities.forEach(city => {
+        coordinates.push(city.localisation.coordinates);
+      })
+    }
+
+    return { message: 'Hello world!', coordinates };
   }
 
   // @todo: remove when not needed anymore

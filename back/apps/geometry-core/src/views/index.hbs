@@ -9,6 +9,30 @@
 <body>
   <h1>Hello in view (updated)</h1>
   {{ message }}
+
+  {{#each coordinates}}
+  <ul>
+    <li>{{ this.[0]}}</li>
+    <li>{{ this.[1]}}</li>
+  </ul>
+
+  {{/each}}
+
+  <svg width="100%" height="100%">
+    <rect width="100%" height="100%" fill="red" />
+
+    {{#each coordinates}}
+    <circle cx="{{this.[0]}}" cy="{{this.[1]}}" r="4" fill="yellow" stroke="black" />
+    {{/each}}
+
+
+    <circle cx="100%" cy="100%" r="150" fill="blue" stroke="black" />
+    <polygon points="120,0 240,225 0,225" fill="green" />
+    <text x="50" y="100" font-family="Verdana" font-size="55" fill="white" stroke="black" stroke-width="2">
+      Hello!
+    </text>
+  </svg>
+
 </body>
 
 </html>
