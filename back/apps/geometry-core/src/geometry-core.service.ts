@@ -38,19 +38,40 @@ export class GeometryCoreService {
     return "200,30 250,180 110,180";
   }
 
-  computePolygonPoints(pointsNumber = 10) {
+  computeContinentPoints() {
+
+  }
+
+  computePolygonPoints(pointsNumber = 100000) {
+    const variable = 10;
+    const length = 950;
+    const height = 500;
     let points = "";
-    points += `${Math.floor(Math.random() * 10)},${Math.floor(Math.random() * 10)}`;
+    const initialX = Math.floor(Math.random() * variable);
+    const initialY = Math.floor(Math.random() * variable);
+    points += `${initialX},${initialY}`;
 
     for (let i = 1; i < pointsNumber; i++) {
-      let x = 10 + i;
-      let y = 10 + i;
-      points += `${x},${y}`;
+      let x = i;
+      let y = i;
+
+      if (i < pointsNumber / 2) {
+        x = x + i + Math.floor(Math.random() * length) + Math.floor(Math.random() * variable);
+        y = y + i + Math.floor(Math.random() * height) + Math.floor(Math.random() * variable);
+      } else if (i == pointsNumber - 1) {
+        x = initialX;
+        y = initialY;
+      }
+      else {
+        x = x + i - Math.floor(Math.random() * variable);
+        y = y + i - Math.floor(Math.random() * variable);
+      }
+
+      points += ` ${x},${y}`;
     }
 
     console.log('points =', points);
     return points;
-
   }
 
 }
