@@ -33,4 +33,24 @@ export class GeometryCoreService {
       }
     });
   }
+
+  getPolygonPoints() {
+    return "200,30 250,180 110,180";
+  }
+
+  computePolygonPoints(pointsNumber = 10) {
+    let points = "";
+    points += `${Math.floor(Math.random() * 10)},${Math.floor(Math.random() * 10)}`;
+
+    for (let i = 1; i < pointsNumber; i++) {
+      let x = 10 + i;
+      let y = 10 + i;
+      points += `${x},${y}`;
+    }
+
+    console.log('points =', points);
+    return points;
+
+  }
+
 }

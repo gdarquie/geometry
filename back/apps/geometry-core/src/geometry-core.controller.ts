@@ -29,7 +29,9 @@ export class GeometryCoreController {
       })
     }
 
-    return { message: 'Hello world!', coordinates };
+    const polygonPoints = this.geometryCoreService.computePolygonPoints();
+
+    return { message: 'Hello world!', coordinates, polygonPoints };
   }
 
   // @todo: remove when not needed anymore
