@@ -34,12 +34,64 @@ export class GeometryCoreService {
     });
   }
 
-  getPolygonPoints() {
-    return "200,30 250,180 110,180";
+  computeContinentPoints(pointsNumber = 1000) {
+    let x = 800;
+    let y = 10;
+
+    let points = ` ${x},${y}`;
+
+    for (let i = 1; i < pointsNumber; i++) {
+      if (i < pointsNumber / 2 / 2) {
+        let result;
+
+        if (pointsNumber) {
+          result = this.computeToEastUpToDown(x, y);
+        } else {
+          result = this.computeToWestUpToDown(x, y);
+        }
+        x = result.x;
+        y = result.y;
+      } else {
+        let result;
+
+        if (pointsNumber) {
+          result = this.computeToEastDownToUp(x, y);
+        } else {
+          result = this.computeToWesttDownToUp(x, y);
+        }
+        x = result.x;
+        y = result.y;
+      }
+
+      points += ` ${x},${y}`;
+    }
+
+    return points;
   }
 
-  computeContinentPoints() {
+  computeToWestUpToDown(x: number, y: number) {
+    x = x + Math.floor(Math.random() * (5 + 5) - 5) - 0.7;
+    y++;
+    return { x, y };
+  }
 
+  computeToEastUpToDown(x: number, y: number) {
+    x = x + Math.floor(Math.random() * (5 + 5) - 5) + 0.9;
+    y++;
+    return { x, y };
+  }
+
+
+  computeToEastDownToUp(x: number, y: number) {
+    x = x + Math.floor(Math.random() * (5 + 5) - 5) + 0.7;
+    y--;
+    return { x, y };
+  }
+
+  computeToWesttDownToUp(x: number, y: number) {
+    x = x + Math.floor(Math.random() * (5 + 5) - 5) - 0.7;
+    y--;
+    return { x, y };
   }
 
   computePolygonPoints(pointsNumber = 100000) {
