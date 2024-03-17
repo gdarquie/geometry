@@ -10,6 +10,6 @@ export class CityPostgresAdapterFetcher {
     private readonly cityRepository: Repository<City>
   ) { }
   async getCities() {
-    return await this.cityRepository.find()
+    return await this.cityRepository.find();
   }
 }

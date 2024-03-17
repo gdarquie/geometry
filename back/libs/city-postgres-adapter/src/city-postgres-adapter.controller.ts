@@ -24,9 +24,28 @@ export class CityPostgresAdapterController {
     city.description = "A non interesting city description";
     city.localisation = {
       type: "Point",
-      coordinates: [1, 2],
+      coordinates: [10, 20],
     }
+
+    const city2 = new City();
+    city2.name = 'A city name';
+    city2.description = "A non interesting city description";
+    city2.localisation = {
+      type: "Point",
+      coordinates: [56, 35],
+    }
+
+    const city3 = new City();
+    city3.name = 'A city name';
+    city3.description = "A non interesting city description";
+    city3.localisation = {
+      type: "Point",
+      coordinates: [12, 46],
+    }
+
     this.persister.saveCity(city);
+    this.persister.saveCity(city2);
+    this.persister.saveCity(city3);
 
     return "A city has been created.";
   }

@@ -1,10 +1,12 @@
 import { Controller, Get, Render, Res } from '@nestjs/common';
 import { GeometryCoreService } from './geometry-core.service';
+import { CityPostgresAdapterFetcher } from '@app/city-postgres-adapter';
 
 @Controller()
 export class GeometryCoreController {
   constructor(
     private readonly geometryCoreService: GeometryCoreService,
+    private readonly cityFetcher: CityPostgresAdapterFetcher,
   ) { }
 
   @Get()
@@ -12,12 +14,22 @@ export class GeometryCoreController {
     return this.geometryCoreService.getHello();
   }
 
-  // @todo: debug the view system or find equivalent
-  // not working for now
-  @Get('/views')
-  @Render('index')
-  getView(@Res() res: Response) {
-    return { message: 'Hello world!' };
+  @Get('/poc')
+  @Render('poc')
+  async getView(@Res() res: Response) {
+    const cities = await this.cityFetcher.getCities();
+
+    let coordinates = [];
+
+    if (cities.length > 0) {
+      cities.forEach(city => {
+        coordinates.push(city.localisation.coordinates);
+      })
+    }
+
+    const polygonPoints = this.geometryCoreService.computeContinentPoints();
+
+    return { message: 'Welcome on views poc.', coordinates, polygonPoints };
   }
 
   // @todo: remove when not needed anymore
