@@ -14,10 +14,8 @@ export class GeometryCoreController {
     return this.geometryCoreService.getHello();
   }
 
-  // @todo: debug the view system or find equivalent
-  // not working for now
-  @Get('/views')
-  @Render('index')
+  @Get('/poc')
+  @Render('poc')
   async getView(@Res() res: Response) {
     const cities = await this.cityFetcher.getCities();
 
@@ -31,7 +29,7 @@ export class GeometryCoreController {
 
     const polygonPoints = this.geometryCoreService.computeContinentPoints();
 
-    return { message: 'Hello world!', coordinates, polygonPoints };
+    return { message: 'Welcome on views poc.', coordinates, polygonPoints };
   }
 
   // @todo: remove when not needed anymore
