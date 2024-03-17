@@ -29,6 +29,15 @@
       "compilerOptions": {
         "tsConfigPath": "libs/city-postgres-adapter/tsconfig.lib.json"
       }
+    },
+    "continent-postgres-adapter": {
+      "type": "library",
+      "root": "libs/continent-postgres-adapter",
+      "entryFile": "index",
+      "sourceRoot": "libs/continent-postgres-adapter/src",
+      "compilerOptions": {
+        "tsConfigPath": "libs/continent-postgres-adapter/tsconfig.lib.json"
+      }
     }
   }
 }

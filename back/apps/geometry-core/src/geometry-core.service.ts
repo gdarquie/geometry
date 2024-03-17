@@ -1,4 +1,4 @@
-import { City } from '@app/city-postgres-adapter/entities/city.entity';
+import { City } from '@geo/city-postgres-adapter/entities/city.entity';
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';

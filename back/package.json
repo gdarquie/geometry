@@ -77,7 +77,8 @@
       "<rootDir>/libs/"
     ],
     "moduleNameMapper": {
-      "^@app/city-postgres-adapter(|/.*)$": "<rootDir>/libs/city-postgres-adapter/src/$1"
+      "^@geo/city-postgres-adapter(|/.*)$": "<rootDir>/libs/city-postgres-adapter/src/$1",
+      "^@geo/continent-postgres-adapter(|/.*)$": "<rootDir>/libs/continent-postgres-adapter/src/$1"
     }
   }
 }
