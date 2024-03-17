@@ -2,9 +2,12 @@ import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { GeometryCoreController } from './geometry-core.controller';
 import { GeometryCoreService } from './geometry-core.service';
-import { CityPostgresAdapterModule } from '@app/city-postgres-adapter';
-import { City } from '@app/city-postgres-adapter/entities/city.entity';
-import { CityPostgresAdapterController } from '@app/city-postgres-adapter/city-postgres-adapter.controller';
+import { CityPostgresAdapterModule } from '@geo/city-postgres-adapter';
+import { City } from '@geo/city-postgres-adapter/entities/city.entity';
+import { CityPostgresAdapterController } from '@geo/city-postgres-adapter/city-postgres-adapter.controller';
+import { Continent } from '@geo/continent-postgres-adapter/entities/continent.entity';
+import { ContinentPostgresAdapterModule } from '@geo/continent-postgres-adapter';
+import { ContinentPostgresAdapterController } from '@geo/continent-postgres-adapter/controllers/continent-postgres-adapter.controller';
 
 @Module({
   imports: [
@@ -15,13 +18,18 @@ import { CityPostgresAdapterController } from '@app/city-postgres-adapter/city-p
       username: 'gis',
       password: 'pwd',
       database: 'gis',
-      entities: [City],
+      entities: [City, Continent],
       synchronize: true,
     }),
-    TypeOrmModule.forFeature([City]),
     CityPostgresAdapterModule,
+    ContinentPostgresAdapterModule,
+    TypeOrmModule.forFeature([City, Continent]),
   ],
-  controllers: [GeometryCoreController, CityPostgresAdapterController],
+  controllers: [
+    GeometryCoreController,
+    CityPostgresAdapterController,
+    ContinentPostgresAdapterController
+  ],
   providers: [GeometryCoreService],
 })
 export class GeometryCoreModule { }

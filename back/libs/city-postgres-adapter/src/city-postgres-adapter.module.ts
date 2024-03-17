@@ -5,11 +5,13 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { CityPostgresAdapterPersister } from './city-postgres-adapter.persister';
 
 @Module({
-  imports: [
-    TypeOrmModule.forFeature([City]),
-    CityPostgresAdapterModule,
+  imports: [TypeOrmModule.forFeature([City])],
+  providers: [
+    CityPostgresAdapterFetcher,
+    CityPostgresAdapterPersister
   ],
-  providers: [CityPostgresAdapterFetcher, CityPostgresAdapterPersister, CityPostgresAdapterFetcher],
-  exports: [CityPostgresAdapterFetcher, CityPostgresAdapterPersister],
+  exports: [
+    CityPostgresAdapterFetcher,
+    CityPostgresAdapterPersister],
 })
 export class CityPostgresAdapterModule { }

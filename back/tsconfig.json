@@ -18,11 +18,17 @@
     "forceConsistentCasingInFileNames": false,
     "noFallthroughCasesInSwitch": false,
     "paths": {
-      "@app/city-postgres-adapter": [
+      "@geo/city-postgres-adapter": [
         "libs/city-postgres-adapter/src"
       ],
-      "@app/city-postgres-adapter/*": [
+      "@geo/city-postgres-adapter/*": [
         "libs/city-postgres-adapter/src/*"
+      ],
+      "@geo/continent-postgres-adapter": [
+        "libs/continent-postgres-adapter/src"
+      ],
+      "@geo/continent-postgres-adapter/*": [
+        "libs/continent-postgres-adapter/src/*"
       ]
     }
   }

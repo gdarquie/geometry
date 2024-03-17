@@ -1,6 +1,6 @@
 import { Controller, Get, Render, Res } from '@nestjs/common';
 import { GeometryCoreService } from './geometry-core.service';
-import { CityPostgresAdapterFetcher } from '@app/city-postgres-adapter';
+import { CityPostgresAdapterFetcher } from '@geo/city-postgres-adapter';
 
 @Controller()
 export class GeometryCoreController {
