@@ -2,12 +2,14 @@ import { Controller, Delete, Get, Param, Post } from "@nestjs/common";
 import { Continent } from "../entities/continent.entity";
 import { ContinentPostgresAdapterFetcher } from "../fetchers/continent-postgres-adapter.fetcher";
 import { ContinentPostgresAdapterPersister } from "../persisters/continent-postgres-adapter.persister";
+import { BasicContinentGenerator } from "../generators";
 
 @Controller()
 export class ContinentPostgresAdapterController {
   constructor(
     private readonly fetcher: ContinentPostgresAdapterFetcher,
     private readonly persister: ContinentPostgresAdapterPersister,
+    private readonly basicContinentGenerator: BasicContinentGenerator,
   ) { }
 
   @Get('/continents')
@@ -20,8 +22,15 @@ export class ContinentPostgresAdapterController {
     this.persister.deleteContinent(continentId);
   }
 
+  @Post('continents/basic')
+  generateBasicContinent() {
+    const continent = this.basicContinentGenerator.generate();
+    console.log(continent);
+    // this.persister.saveContinent(continent);
+  }
+
   @Post('/continents')
-  createCity(): string {
+  createContinent(): string {
     const coordinates = [
       [
         [

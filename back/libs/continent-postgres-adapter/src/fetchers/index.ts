@@ -1,0 +1,1 @@
+export * from './continent-postgres-adapter.fetcher';

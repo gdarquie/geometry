@@ -1,14 +1,20 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Continent } from './entities/continent.entity';
-import { ContinentPostgresAdapterFetcher } from './fetchers/continent-postgres-adapter.fetcher';
-import { ContinentPostgresAdapterPersister } from './persisters/continent-postgres-adapter.persister';
+import { ContinentPostgresAdapterFetcher } from './fetchers';
+import { ContinentPostgresAdapterPersister } from './persisters';
+import { BasicContinentGenerator } from './generators';
+import { ContinentPostgresAdapterController } from './controllers/continent-postgres-adapter.controller';
 
 @Module({
   imports: [TypeOrmModule.forFeature([Continent])],
   providers: [
     ContinentPostgresAdapterFetcher,
-    ContinentPostgresAdapterPersister
+    ContinentPostgresAdapterPersister,
+    BasicContinentGenerator,
+  ],
+  controllers: [
+    ContinentPostgresAdapterController,
   ],
   exports: [
     ContinentPostgresAdapterFetcher,

@@ -28,7 +28,6 @@ import { ContinentPostgresAdapterController } from '@geo/continent-postgres-adap
   controllers: [
     GeometryCoreController,
     CityPostgresAdapterController,
-    ContinentPostgresAdapterController
   ],
   providers: [GeometryCoreService],
 })
