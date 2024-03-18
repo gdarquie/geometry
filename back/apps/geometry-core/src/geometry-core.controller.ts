@@ -1,12 +1,14 @@
 import { Controller, Get, Render, Res } from '@nestjs/common';
 import { GeometryCoreService } from './geometry-core.service';
 import { CityPostgresAdapterFetcher } from '@geo/city-postgres-adapter';
+import { ContinentPostgresAdapterFetcher } from '@geo/continent-postgres-adapter/fetchers/continent-postgres-adapter.fetcher';
 
 @Controller()
 export class GeometryCoreController {
   constructor(
     private readonly geometryCoreService: GeometryCoreService,
     private readonly cityFetcher: CityPostgresAdapterFetcher,
+    private readonly continentFetcher: ContinentPostgresAdapterFetcher,
   ) { }
 
   @Get()
@@ -29,118 +31,16 @@ export class GeometryCoreController {
 
     const polygonPoints = this.geometryCoreService.computeContinentPoints();
 
-    return { message: 'Welcome on views poc.', coordinates, polygonPoints };
-  }
+    const continents = await this.continentFetcher.getContinents();
+    const continentsPoints = continents.map(continent => {
+      return continent.localisation.coordinates.map(vector => vector.toString());
+    });
 
-  // @todo: remove when not needed anymore
-  // it is an example of the geojson format expected by leaflet
-  @Get('/states')
-  getStates(): string {
-    return JSON.stringify([
-      {
-        "type": "Features",
-        "properties": {
-          "party": "Republicans"
-        },
-        "geometry": {
-          "type": "Polygon",
-          "coordinates": [
-            [
-              [
-                -104.05,
-                48.99
-              ],
-              [
-                -97.22,
-                48.98
-              ],
-              [
-                -96.58,
-                45.94
-              ],
-              [
-                -104.03,
-                45.94
-              ],
-              [
-                -104.05,
-                48.99
-              ]
-            ]
-          ]
-        }
-      },
-      {
-        "type": "Feature",
-        "properties": {
-          "party": "Democrat"
-        },
-        "geometry": {
-          "type": "Polygon",
-          "coordinates": [
-            [
-              [
-                -109.05,
-                41.00
-              ],
-              [
-                -102.06,
-                40.99
-              ],
-              [
-                -102.03,
-                36.99
-              ],
-              [
-                -109.04,
-                36.99
-              ],
-              [
-                -109.05,
-                41.00
-              ]
-            ]
-          ]
-        }
-      },
-      {
-        "type": "Feature",
-        "properties": {
-          "party": "Democrat"
-        },
-        "geometry": {
-          "type": "MultiLineString",
-          "coordinates": [
-            [
-              [
-                -73.974541,
-                40.582351
-              ],
-              [
-                -73.973203,
-                40.582724
-              ],
-              [
-                -73.970587,
-                40.583218
-              ],
-              [
-                -73.9692139,
-                40.583531
-              ],
-              [
-                -73.966894,
-                40.583348
-              ],
-              [
-                -73.96536,
-                40.583278
-              ]
-            ]
-          ]
-        }
-      }
-    ]);
-
+    return {
+      message: 'Welcome on views poc.',
+      coordinates,
+      polygonPoints,
+      continentsPoints
+    };
   }
 }

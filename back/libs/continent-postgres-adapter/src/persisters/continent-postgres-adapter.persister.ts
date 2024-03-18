@@ -9,7 +9,12 @@ export class ContinentPostgresAdapterPersister {
     @InjectRepository(Continent)
     private readonly continentRepository: Repository<Continent>
   ) { }
+
   async saveContinent(continent: Continent) {
     return await this.continentRepository.save(continent)
+  }
+
+  async deleteContinent(continentId: number) {
+    return await this.continentRepository.delete(continentId)
   }
 }

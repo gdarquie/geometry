@@ -1,4 +1,4 @@
-import { Controller, Get, Post } from "@nestjs/common";
+import { Controller, Delete, Get, Param, Post } from "@nestjs/common";
 import { Continent } from "../entities/continent.entity";
 import { ContinentPostgresAdapterFetcher } from "../fetchers/continent-postgres-adapter.fetcher";
 import { ContinentPostgresAdapterPersister } from "../persisters/continent-postgres-adapter.persister";
@@ -15,29 +15,38 @@ export class ContinentPostgresAdapterController {
     return await this.fetcher.getContinents();
   }
 
+  @Delete('/continents/:id')
+  deleteContinent(@Param('id') continentId: number) {
+    this.persister.deleteContinent(continentId);
+  }
+
   @Post('/continents')
   createCity(): string {
     const coordinates = [
       [
         [
+          800,
+          10
+        ],
+        [
+          500,
+          100
+        ],
+        [
+          450,
+          180
+        ],
+        [
+          400,
+          60
+        ],
+        [
           0,
-          0
-        ],
-        [
-          1,
-          0
-        ],
-        [
-          1,
-          1
+          10
         ],
         [
           0,
-          1
-        ],
-        [
-          0,
-          0
+          10
         ]
       ]
     ];
