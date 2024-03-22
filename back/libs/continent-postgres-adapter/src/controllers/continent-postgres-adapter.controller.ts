@@ -25,8 +25,8 @@ export class ContinentPostgresAdapterController {
   @Post('continents/basic')
   generateBasicContinent() {
     const continent = this.basicContinentGenerator.generate();
-    console.log(continent);
-    // this.persister.saveContinent(continent);
+    this.persister.saveContinent(continent);
+    return "A new continent has been created.";
   }
 
   @Post('/continents')
