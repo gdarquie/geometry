@@ -1,0 +1,1 @@
+export { ContinentConfigurationInterface } from './continent-configuration.interface'
