@@ -26,10 +26,35 @@ export class BasicContinentGenerator {
 
   private computeDrawPointsCoordinates(
     count: number,
-    continentConfiguration: ContinentConfigurationInterface
-  ): Array<number> {
-    // todo: return a list a coordinatess
-    return [0, 1];
+    configuration: ContinentConfigurationInterface
+  ): Array<Array<number>> {
+    // todo: return a list a coordinates
+    let coordinates = [];
+    for (let i = 0; i < count; i++) {
+
+      // initial position for the polygon
+      if (i = 0) {
+        const x = configuration.minWidth / 2 + (Math.random() * configuration.minWidth * 0.05) - (Math.random() * configuration.minWidth * 0.05);
+        const y = (Math.random() * configuration.minHeight * 0.01);
+
+        coordinates.push([x, y]);
+      }
+
+      // final position: restart at begining
+      if (i = count - 1) {
+        const x = coordinates[0][0]
+        const y = coordinates[0][1];
+
+        coordinates.push([x, y]);
+      }
+
+      // todo: correct this part
+      else {
+        // other position
+        coordinates.push([1, 2]);
+      }
+    }
+    return [[0, 1], [1, 2]];
   }
 
   // to correct and to update
@@ -56,7 +81,6 @@ export class BasicContinentGenerator {
     const factorY = (targetY - initY) / count;
 
     for (let i = 0; i < count; i++) {
-
       // first position
       // targetPosition
     }
@@ -70,7 +94,17 @@ export class BasicContinentGenerator {
     // todo: apply the new process to compute coordinates 
     const drawPointsCount = this.computeDrawPointsCount(count);
     const segmentPointsCount = Math.floor(count / this.computeDrawPointsCount(count));
+
     // 1) compute the coordinates of the draw points
+    const continentConfiguration = {
+      minWidth: 300,
+      minHeight: 300,
+    };
+
+    const drawPoints = this.computeDrawPointsCoordinates(
+      drawPointsCount,
+      continentConfiguration
+    );
     // 2) for each drawPoints, generates the transition
     // for every segment compute coordinates: it begins from a point and finish to another
 
